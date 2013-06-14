@@ -1,0 +1,99 @@
+Event:
+  Event_1:
+    date: 23.10.2012
+    hour_start: '03:00'
+    hour_end: '04:00'
+    country: polska
+    place: 'Klub Soho'
+    location: Wrocław
+    event: Test
+    created_at: '2012-08-06 22:58:10'
+    updated_at: '2012-08-15 21:11:31'
+  Event_2:
+    date: 20.11.2020
+    hour_start: '05:00'
+    hour_end: '06:00'
+    country: pl
+    place: Bezsenność
+    location: Wrocław/Polska
+    event: 'Some other event'
+    created_at: '2012-08-06 22:58:36'
+    updated_at: '2012-08-06 22:58:36'
+  Event_3:
+    date: 20.10.2020
+    hour_start: '03:00'
+    hour_end: '13:00'
+    country: polska
+    place: Bezsenność
+    location: Wrocław
+    event: 'Some other event'
+    created_at: '2012-08-15 18:50:49'
+    updated_at: '2012-08-15 18:50:49'
+  Event_4:
+    date: 30.11.2012
+    hour_start: '12:00'
+    hour_end: '13:00'
+    country: polska
+    place: Solucja
+    location: Gdynia
+    event: 'Jakaś impreza'
+    created_at: '2012-08-15 20:00:36'
+    updated_at: '2012-08-15 21:08:20'
+Video:
+  Video_1:
+    link: 'http://www.youtube.com/watch?v=N1ntMSi2Kls&feature=g-all-u'
+    title: 'Jakiś testowy film'
+    description: 's lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj fs lksdjf lksadjflskadjf lskadjf lksadj f'
+    created_at: '2012-08-11 02:23:47'
+    updated_at: '2012-08-11 02:23:47'
+News:
+  News_1:
+    title: 'Testowy news'
+    content: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque suscipit urna nisl, sed porttitor velit. Nulla pharetra faucibus diam at bibendum. Donec libero ligula, adipiscing sed suscipit ac, imperdiet ut mauris. Maecenas ut ipsum sit amet lorem iaculis gravida. Pellentesque placerat magna sed metus aliquet a laoreet ligula tempus. Maecenas purus tortor, aliquam in congue id, ornare id dui. Cras vitae ante quam. Morbi vulputate ante sed velit sagittis rhoncus. Ut iaculis consectetur velit nec accumsan. Duis auctor varius varius. Aenean molestie auctor lobortis. Donec quis turpis nisi. Aenean purus massa, vulputate vel viverra quis, tincidunt sit amet est. Praesent et eros id eros scelerisque laoreet.\r\n\r\nEtiam et neque dui, eu interdum lacus. Donec sem metus, faucibus quis venenatis ac, varius et erat. Suspendisse elementum arcu in mauris aliquam viverra. Morbi erat odio, condimentum quis consectetur sit amet, iaculis non lorem. Mauris ac urna mauris, non porttitor sapien. Vivamus non augue a tortor suscipit tempus. Fusce felis felis, scelerisque ac posuere id, fringilla ac felis. In facilisis lacus nec lacus dapibus non blandit nisi fermentum. Nunc dapibus tempus elementum. Aenean vel posuere libero. Praesent purus eros, pellentesque quis tristique id, eleifend et libero. Vestibulum at mi lorem.\r\n\r\nNulla vitae enim orci. Integer facilisis velit at tortor luctus eleifend. Ut et quam arcu. Etiam dignissim porttitor sollicitudin. Pellentesque rutrum ipsum in nulla fringilla vitae laoreet augue eleifend. Nam porttitor, velit sit amet vulputate accumsan, libero enim ultricies massa, ac egestas turpis eros non mi. Sed eget quam velit. Sed mi turpis, posuere eu elementum eget, facilisis ut arcu. Phasellus porta ipsum eu leo molestie iaculis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur vestibulum diam et turpis pharetra euismod. Etiam ac consectetur mauris. "
+    created_at: '2012-08-07 23:01:53'
+    updated_at: '2012-08-07 23:01:53'
+    slug: testowy-news
+  News_2:
+    title: 'Drugi news'
+    content: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque suscipit urna nisl, sed porttitor velit. Nulla pharetra faucibus diam at bibendum. Donec libero ligula, adipiscing sed suscipit ac, imperdiet ut mauris. Maecenas ut ipsum sit amet lorem iaculis gravida. Pellentesque placerat magna sed metus aliquet a laoreet ligula tempus. Maecenas purus tortor, aliquam in congue id, ornare id dui. Cras vitae ante quam. Morbi vulputate ante sed velit sagittis rhoncus. Ut iaculis consectetur velit nec accumsan. Duis auctor varius varius. Aenean molestie auctor lobortis. Donec quis turpis nisi. Aenean purus massa, vulputate vel viverra quis, tincidunt sit amet est. Praesent et eros id eros scelerisque laoreet.\r\n\r\nEtiam et neque dui, eu interdum lacus. Donec sem metus, faucibus quis venenatis ac, varius et erat. Suspendisse elementum arcu in mauris aliquam viverra. Morbi erat odio, condimentum quis consectetur sit amet, iaculis non lorem. Mauris ac urna mauris, non porttitor sapien. Vivamus non augue a tortor suscipit tempus. Fusce felis felis, scelerisque ac posuere id, fringilla ac felis. In facilisis lacus nec lacus dapibus non blandit nisi fermentum. Nunc dapibus tempus elementum. Aenean vel posuere libero. Praesent purus eros, pellentesque quis tristique id, eleifend et libero. Vestibulum at mi lorem.\r\n\r\nNulla vitae enim orci. Integer facilisis velit at tortor luctus eleifend. Ut et quam arcu. Etiam dignissim porttitor sollicitudin. Pellentesque rutrum ipsum in nulla fringilla vitae laoreet augue eleifend. Nam porttitor, velit sit amet vulputate accumsan, libero enim ultricies massa, ac egestas turpis eros non mi. Sed eget quam velit. Sed mi turpis, posuere eu elementum eget, facilisis ut arcu. Phasellus porta ipsum eu leo molestie iaculis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur vestibulum diam et turpis pharetra euismod. Etiam ac consectetur mauris. "
+    created_at: '2012-08-07 23:02:04'
+    updated_at: '2012-08-07 23:02:04'
+    slug: drugi-news
+sfGuardGroupPermission:
+  sfGuardGroupPermission_1_1:
+    Group: sfGuardGroup_1
+    Permission: sfGuardPermission_1
+    created_at: '2012-07-17 01:41:25'
+    updated_at: '2012-07-17 01:41:25'
+sfGuardUser:
+  sfGuardUser_1:
+    first_name: John
+    last_name: Doe
+    email_address: john.doe@gmail.com
+    username: admin
+    algorithm: sha1
+    salt: e78804a8a34fd0bd54e21621afcb16ce
+    password: c9d0424cec2e511fd7b5ff6de9a8b311e51c36d3
+    is_active: true
+    is_super_admin: true
+    last_login: '2012-08-15 19:29:01'
+    created_at: '2012-07-17 01:41:25'
+    updated_at: '2012-08-15 19:29:01'
+sfGuardUserGroup:
+  sfGuardUserGroup_1_1:
+    User: sfGuardUser_1
+    Group: sfGuardGroup_1
+    created_at: '2012-07-17 01:41:25'
+    updated_at: '2012-07-17 01:41:25'
+sfGuardGroup:
+  sfGuardGroup_1:
+    name: admin
+    description: 'Administrator group'
+    created_at: '2012-07-17 01:41:25'
+    updated_at: '2012-07-17 01:41:25'
+sfGuardPermission:
+  sfGuardPermission_1:
+    name: admin
+    description: 'Administrator permission'
+    created_at: '2012-07-17 01:41:25'
+    updated_at: '2012-07-17 01:41:25'

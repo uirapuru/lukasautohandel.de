@@ -1,0 +1,88 @@
+News:
+  actAs:
+    I18n:
+      fields: [msgtitle,msgbody]
+    Timestampable: ~
+    Sluggable:
+      name:         title_slug
+      alias:        slug
+      unique:       true
+      fields:       [msgtitle]
+      canUpdate:    true
+  tableName:    news
+  columns:
+    msgtitle:
+      type:     string
+      length:   255
+      notnull:  true
+      unique:   false  
+    msgbody:
+      type:     text
+      notnull:  true 
+      
+Event:
+  actAs:
+    Timestampable: ~
+  tableName:    events
+  columns:
+    date_start:
+      type:     timestamp
+      notnull:  true
+      unique:   false
+    date_end:
+      type:     timestamp
+      notnull:  true
+      unique:   false
+#    hour_start:
+#      type:     string
+#      length:   5
+#      notnull:  true
+#      unique:   false  
+#    hour_end:
+#      type:     string
+#      length:   5
+#      notnull:  true
+#      unique:   false  
+    country:
+      type:     string
+      length:   100
+      notnull:  true
+      unique:   false  
+    place:
+      type:     string
+      length:   100
+      notnull:  true
+      unique:   false  
+    location:
+      type:     string
+      length:   100
+      notnull:  true
+      unique:   false  
+    event:
+      type:     string
+      length:   200
+      notnull:  true
+      unique:   false  
+
+Video:
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [title,description]
+  tableName:    videos
+  columns:
+    link:
+      type:     string
+      length:   200
+      notnull:  true
+      unique:   false  
+    title:
+      type:     string
+      length:   100
+      notnull:  true
+      unique:   false 
+    description:
+      type:     string
+      length:   400
+      notnull:  true
+      unique:   false 

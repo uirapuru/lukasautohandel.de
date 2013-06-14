@@ -1,0 +1,52 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of contactForm
+ *
+ * @author Uirapuru
+ */
+class contactForm
+        extends sfForm
+{
+
+    public static $subjects = array(
+        0 => "Wybierz jeden z tematów",
+        1 => "Temat nr 1",
+        2 => "Temat nr 2",
+        3 => "Temat nr 3",
+        4 => "Temat nr 4",
+    );
+
+    public function setup()
+    {
+
+        $this->setWidgets(array(
+            "name" => new sfWidgetFormInput(),
+            "email" => new sfWidgetFormInput(),
+            "subject" => new sfWidgetFormSelect(array("choices" => self::$subjects)),
+            "body" => new sfWidgetFormTextarea(),
+        ));
+
+        $this->getWidgetSchema()->setLabels(array(
+            "name" => "Imię i nazwisko",
+            "email" => "Adres e-mail",
+            "body" => "Treść",
+            "subject" => "Temat",
+        ));
+
+        $this->setValidators(array(
+            "name" => new sfValidatorString(array(), array('required' => "Musisz podać imię i nazwisko")),
+            "email" => new sfValidatorEmail(array(), array('required' => "Musisz podać email", 'invalid' => "Adres email niepoprawny!")),
+            "body" => new sfValidatorString(array(), array('required' => "Musisz podać treść wiadomości")),
+            "subject" => new sfValidatorChoice(array("choices" => array(0,1,2,3,4))),
+        ));
+
+        $this->widgetSchema->setNameFormat('contact[%s]');
+    }
+
+}

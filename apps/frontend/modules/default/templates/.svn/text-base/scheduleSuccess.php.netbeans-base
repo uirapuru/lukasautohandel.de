@@ -1,0 +1,31 @@
+<img src="/images/caption-kalendarz.png" class="caption"/>
+<style>
+    table.events-table {
+        font-family: "Myriad", sans-serif;
+        font-size: 11px
+    }
+    </style>
+
+
+<?php if ($events->count() > 0): ?>
+    <table class="table events-table">
+        <thead>
+            <tr>
+                <th>data i godzina od - do</th>
+                <th></th>
+                <th>miejsce</th>
+                <th>event</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($events as $event): ?>
+                <tr>
+                    <td><?php echo $event->getDateStart() ? $event->getDateStart() ." - ". $event->getDateEnd() : ''; ?></td>
+                    <td><img src="/images/flags/<?php echo $event->getCountry(); ?>.jpg" /></td>
+                    <td><?php echo $event->getPlace(); ?> / <?php echo $event->getLocation(); ?></td>
+                    <td><?php echo $event->getEvent(); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>

@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 53
+.depdblock
+.lock
+.registry
+.channels
+.filemap
+.depdb
+
+END

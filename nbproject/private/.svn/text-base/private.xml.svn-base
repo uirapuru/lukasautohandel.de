@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/indexSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/web/index.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/_cloud.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/radioSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/web/css/main.css</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/newsSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/musicSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/templates/layout.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/config/app.yml</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/_fb.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/bioSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/videoSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/actions/actions.class.php</file>
+        <file>file:/var/www/thomascloud.local/lib/form/doctrine/EventForm.class.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/scheduleSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/apps/backend/modules/events/templates/_date.php</file>
+        <file>file:/var/www/thomascloud.local/apps/backend/modules/events/config/generator.yml</file>
+        <file>file:/var/www/thomascloud.local/apps/backend/config/view.yml</file>
+        <file>file:/var/www/thomascloud.local/web/js/main.js</file>
+        <file>file:/var/www/thomascloud.local/lib/model/doctrine/Event.class.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/_events.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/modules/default/templates/contactSuccess.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/config/view.yml</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/lib/contactForm.class.php</file>
+        <file>file:/var/www/thomascloud.local/apps/frontend/config/factories.yml</file>
+    </open-files>
+</project-private>

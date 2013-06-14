@@ -1,0 +1,1 @@
+<?php include_partial("news", array("news" => $news)); ?>

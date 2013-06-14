@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * News form.
+ *
+ * @package    ThomasCloud
+ * @subpackage form
+ * @author     Grzegorz Kaszuba
+ * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class NewsForm extends BaseNewsForm
+{
+  public function configure()
+  {
+    $this->setWidgets(array(
+      'title'      => new sfWidgetFormInputText(),
+      'content'    => new sfWidgetFormTextarea(),
+    ));
+
+    $this->setValidators(array(
+      'title'      => new sfValidatorString(array('max_length' => 255)),
+      'content'    => new sfValidatorPass(),
+    ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'News', 'column' => array('title_slug')))
+    );
+
+    $this->widgetSchema->setNameFormat('news[%s]');
+  }
+}

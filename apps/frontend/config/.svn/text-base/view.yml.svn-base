@@ -1,0 +1,29 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        Thomas Cloud Official Site
+    description:  Thomas Cloud Official Site
+    keywords:     dj, muzyka
+    language:     en,pl
+    robots:       index, follow
+
+  stylesheets:
+    - ui-lightness/jquery-ui-1.8.21.custom.css
+    - bootstrap.min.css
+    - /css/vendor/960.gs/960_16_col.css
+    - main.css
+    
+  javascripts:
+    - /js/vendor/jquery-1.7.2.min.js
+    - /js/vendor/jquery-ui-1.8.21.custom.min.js
+    - /js/vendor/jquery-ui-sliderAccess.js
+    - /js/vendor/jquery-ui-timepicker-addon.js
+    - /js/vendor/modernizr-2.5.3.min.js
+    - main.js
+  has_layout:     true
+  layout:         layout

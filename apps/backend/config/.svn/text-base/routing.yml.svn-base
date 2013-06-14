@@ -1,0 +1,63 @@
+news:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                News
+    module:               news
+    prefix_path:          /news
+    column:               id
+    with_wildcard_routes: true
+
+event:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Event
+    module:               events
+    prefix_path:          /events
+    column:               id
+    with_wildcard_routes: true
+
+video:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Video
+    module:               videos
+    prefix_path:          /videos
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+schedule:
+  url:    /schedule
+  param:  { module: events, action: index }
+
+edit-news:
+  url:    /edit-news
+  param:  { module: default, action: listNews }
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
