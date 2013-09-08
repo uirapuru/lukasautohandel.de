@@ -1,4 +1,4 @@
-nbproject
-lib/vendor
-cache
-
+nbproject/*
+lib/vendor/*
+cache/*
+log/*

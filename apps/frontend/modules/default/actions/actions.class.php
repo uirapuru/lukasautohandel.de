@@ -41,7 +41,9 @@ class defaultActions extends sfActions {
                     "message" => $message
                 ));
 
-                $message->setFrom(array($this->form->getValue("email") => $this->form->getValue("name")))
+                $message
+//                        ->setFrom(array($this->form->getValue("email") => $this->form->getValue("name")))
+                        ->setFrom(array(sfConfig::get("app_swiftmailer_fromEmail") => sfConfig::get("app_swiftmailer_fromName")))
                         ->setReplyTo(array($this->form->getValue("email") => $this->form->getValue("name")))
                         ->setTo(array(sfConfig::get("app_swiftmailer_toEmail")))
                         ->setBody($body,'text/html','UTF8');
