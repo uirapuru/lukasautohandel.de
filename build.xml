@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Docloud" default="env.check">
+    
+    <!-- SPRAWDZAMY RODZAJ ŚRODOWISKA I ODPALAMY ODPOWIEDNIEGO BUILDA ZALEŻNIE OD WYNIKU -->
+    
+    <condition property="copy-condition">
+        <equals arg1="${env}" arg2="local" casesensitive="false" />
+    </condition>
+    
+    <target name="env.check" description="testing environment"
+            depends="env.local, env.prod">
+    </target>
+
+    <target name="env.local" description="environment local"
+            if="copy-condition">
+        <antcall target="build-local" />
+        <copy file="${basedir}/build/frontend_local.php" tofile="${basedir}/web/index.php" overwrite="true" />
+    </target>
+
+    <target name="env.prod" description="environment prod" 
+            unless="copy-condition">
+        <antcall target="build-prod" />
+        <copy file="${basedir}/build/frontend_prod.php" tofile="${basedir}/web/index.php" overwrite="true" />
+    </target>
+    
+    <!-- BUILDY DLA POSZCZEGÓLNYCH ŚRODOWISK -->
+    
+    <target name="build-local" depends="symfony:clear-cache,vendors:install-dev,symfony:assets,symfony:build-all,clean-uploads">
+        <echo message="Docloud.local - building local environment"/>
+    </target>
+    
+    <target name="build-prod" depends="git:pull,symfony:clear-cache,vendors:install,symfony:assets">
+        <echo message="Docloud.pl - building production environment"/>
+    </target>
+ 
+    <!-- ZADANIA DO WYKONANIA -->
+ 
+    <target name="git:pull" description="Pulling from git">
+        <exec executable="git">
+            <arg value="pull" />
+        </exec>
+    </target>
+ 
+    <target name="symfony:clear-cache" description="Cleaning cache">
+        <exec executable="./symfony">
+            <arg value="cc" />
+        </exec>
+    </target>
+  
+    <target name="composer:install" description="Downloading composer packages">
+        <exec executable="composer">
+            <arg value="install" />
+        </exec>
+    </target>
+ 
+    <target name="vendors:install" description="Install vendors">
+        <antcall target="vendors:delete" />
+        <antcall target="vendors:create-dirs" />
+        <antcall target="composer:install" />
+        <antcall target="bootstrap:build" />
+        <antcall target="vendors:symlinks" />
+    </target>
+ 
+    <target name="vendors:install-dev" description="Install vendors">
+        <antcall target="vendors:delete" />
+        <antcall target="vendors:create-dirs" />
+        <antcall target="composer:install-dev" />
+        <antcall target="bootstrap:build" />
+        <antcall target="vendors:symlinks" />
+    </target>
+    
+    <target name="composer:install-dev" description="Downloading composer packages">
+        <delete file="composer.lock"/>
+        <exec executable="composer">
+            <arg value="install" />
+            <arg value="--dev" />
+        </exec>
+    </target>
+ 
+    <target name="vendors:create-dirs" description="Creating vendors dirs">
+        <mkdir dir="${basedir}/web/js/vendor" />
+        <mkdir dir="${basedir}/web/css/vendor" />
+    </target>
+    
+    <target name="bootstrap:build" description="Building Twitter Bootstrap">
+        <mkdir dir="${basedir}/lib/vendor/twitter/bootstrap/tmp" />
+            
+        <exec executable="npm" dir="${basedir}/lib/vendor/twitter/bootstrap">
+            <arg value="set" />
+            <arg value="tmp" />
+            <arg value="${basedir}/lib/vendor/twitter/bootstrap/tmp/" />
+        </exec>                       
+        <exec executable="npm" dir="${basedir}/lib/vendor/twitter/bootstrap">
+            <arg value="install" />
+        </exec>
+
+        <antcall target="fix_recess" />
+
+        <exec executable="make" dir="${basedir}/lib/vendor/twitter/bootstrap" />
+        
+        <exec executable="make" dir="${basedir}/lib/vendor/twitter/bootstrap">
+            <arg value="bootstrap" />
+        </exec>
+    </target>
+    
+    <target name="fix_recess">
+        <replace file="${basedir}/lib/vendor/twitter/bootstrap/node_modules/recess/package.json" token='"less": ">= 1.3.0"' value='"less": "1.3.3"' />
+        <delete dir="${basedir}/lib/vendor/twitter/bootstrap/node_modules/recess/node_modules/"/>
+        <exec executable="npm" dir="${basedir}/lib/vendor/twitter/bootstrap/node_modules/recess/">
+            <arg value="install" />
+        </exec>
+    </target>
+    
+    <target name="vendors:delete">
+        <exec executable="rm">
+            <arg value="-rf" />
+            <arg value="${basedir}/lib/vendor" />
+        </exec>
+        <exec executable="rm">
+            <arg value="-rf" />
+            <arg value="${basedir}/web/css/vendor" />
+        </exec>
+        <exec executable="rm">
+            <arg value="-rf" />
+            <arg value="${basedir}/web/js/vendor" />
+        </exec>
+    </target>
+    
+    <target name="vendors:symlinks">
+        <symlink link="${basedir}/web/css/vendor/boilerplate" resource="${basedir}/lib/vendor/boilerplate/boilerplate/css/" overwrite="true"/>
+        <symlink link="${basedir}/web/css/vendor/bootstrap" resource="${basedir}/lib/vendor/twitter/bootstrap/bootstrap/css/" overwrite="true"/>
+        <symlink link="${basedir}/web/css/vendor/img" resource="${basedir}/lib/vendor/twitter/bootstrap/bootstrap/img/" overwrite="true"/>
+        <symlink link="${basedir}/web/css/vendor/jqueryui" resource="${basedir}/lib/vendor/jquery/jqueryui/css/" overwrite="true"/>
+
+        <symlink link="${basedir}/web/js/vendor/boilerplate" resource="${basedir}/lib/vendor/boilerplate/boilerplate/js/" overwrite="true"/>
+        <symlink link="${basedir}/web/js/vendor/bootstrap" resource="${basedir}/lib/vendor/twitter/bootstrap/bootstrap/js/" overwrite="true"/>
+        <symlink link="${basedir}/web/js/vendor/jquery" resource="${basedir}/lib/vendor/jquery/jquery/" overwrite="true"/>
+        <symlink link="${basedir}/web/js/vendor/jqueryui" resource="${basedir}/lib/vendor/jquery/jqueryui/js/" overwrite="true"/>
+    </target>
+ 
+    <target name="symfony:assets" description="Publishing plugin assets">
+        <exec executable="./symfony">
+            <arg value="plugin:publish-assets" />
+        </exec>
+    </target>
+ 
+    <target name="symfony:build-all" description="Building db and classes">
+        <exec executable="./symfony">
+            <arg value="doctrine:build" />
+            <arg value="--all" />
+            <arg value="--no-confirmation" />
+            <arg value="--and-load" />
+            <arg value="--env=${env}" />
+        </exec>
+    </target>
+ 
+    <target name="clean-uploads" description="Cleanup uploads dir">
+        <exec executable="rm">
+            <arg value="-rf" />
+            <arg value="web/uploads/!(.gitignore)" />
+        </exec>
+    </target>
+        
+    <target name="test-env">
+        <condition property="isProdEnvironment">
+            <equals arg1="${env}" arg2="prod" />
+        </condition>
+    </target>
+
+    <target name="update-index" depends="test-env" if="isProdEnvironment">
+        <copy file="web/frontend_prod.php" tofile="web/index.php" overwrite="true" />
+    </target>
+
+
+</project>

@@ -1,0 +1,51 @@
+Foto:
+  img_001:
+    filename: page1-img1.jpg
+    Car:      car_001
+  img_002:
+    filename: page1-img2.jpg
+    Car:      car_001
+    is_primary: true
+  img_003:
+    filename: page1-img3.jpg
+    Car:      car_001
+  img_004:
+    filename: page1-img4.jpg
+    Car:      car_001
+  img_005:
+    filename: page2-img1.jpg
+    Car:      car_001
+  img_006:
+    filename: page2-img2.jpg
+    Car:      car_001
+  img_007:
+    filename: page2-img3.jpg
+    Car:      car_001
+    
+  img_008:
+    filename: page1-img1.jpg
+    Car:      car_002
+    
+  img_009:
+    filename: page1-img2.jpg
+    Car:      car_002
+    
+  img_010:
+    filename: page1-img1.jpg
+    Car:      car_003
+    
+  img_011:
+    filename: page1-img1.jpg
+    Car:      car_004
+    
+  img_012:
+    filename: page1-img1.jpg
+    Car:      car_005
+    
+  img_013:
+    filename: page2-img1.jpg
+    Car:      car_005
+    
+  img_014:
+    filename: page2-img2.jpg
+    Car:      car_005
