@@ -1,86 +1,149 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2013-09-08 02:35+0100\n"
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-09-23 20:32+0100\n"
 "Last-Translator: Grzegorz Kaszuba <uirapuru@tlen.pl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
 
-msgid "Biografia"
-msgstr "Biography"
+msgid "navigation.home"
+msgstr "Home"
 
-msgid "Muzyka"
-msgstr "Music"
+msgid "navigation.search"
+msgstr "Search"
 
-msgid "Kalendarz"
-msgstr "Tourdates"
+msgid "navigation.contacts"
+msgstr "Contacts"
 
-msgid "Wideo"
-msgstr "Video"
+msgid "search.vehiclesListHeader"
+msgstr "search results"
 
-msgid "Kontakt"
-msgstr "Contact"
+msgid "search.all"
+msgstr "see all"
 
-msgid "Formularz Kontaktowy"
-msgstr "Contact Form"
+msgid "car.details"
+msgstr "Details"
 
-msgid "Imię i nazwisko"
-msgstr "First and last name"
+msgid "paging.first"
+msgstr "First"
 
-msgid "Adres e-mail"
-msgstr "E-mail address"
+msgid "paging.previous"
+msgstr "Previous"
 
-msgid "Temat"
-msgstr "Subject"
+msgid "paging.next"
+msgstr "Next"
 
-msgid "Treść"
+msgid "paging.last"
+msgstr "Last"
+
+msgid "contact.contactHeader"
+msgstr "Contact Us"
+
+msgid "contact.contactFormLabel"
 msgstr "Message"
 
-msgid "Wyślij"
-msgstr "Send"
+msgid "contact.contactForm.noticeThankYou"
+msgstr "Thank you for your message"
 
-msgid "Musisz podać imię i nazwisko"
-msgstr "Please enter your first and last name"
+msgid "contact.name.placeholder"
+msgstr "name"
 
-msgid "Musisz podać email"
-msgstr "You have to enter your email address"
+msgid "contact.email.placeholder"
+msgstr "email"
 
-msgid "Musisz podać treść wiadomości"
-msgstr "You have to enter message body"
+msgid "contact.phone.placeholder"
+msgstr "phone"
 
-msgid "Adres email niepoprawny!"
-msgstr "Incorrect email address!"
+msgid "contact.body.placeholder"
+msgstr "message body"
 
-msgid "News"
-msgstr "News"
+msgid "contact.contactForm.resetButtonLabel"
+msgstr "reset"
 
-msgid "Radio"
-msgstr "Radio"
+msgid "contact.contactForm.submitButtonLabel"
+msgstr "submit"
 
-msgid "Press"
-msgstr "Press"
+msgid "car.aboutHeader"
+msgstr "About"
 
-msgid "Data"
-msgstr "Date"
+msgid "car.aboutSubheader"
+msgstr "this car"
 
-msgid "Godzina"
-msgstr "Hour"
+msgid "car.brand"
+msgstr "Brand"
 
-msgid "Miejsce"
-msgstr "Place"
+msgid "car.model"
+msgstr "Model"
 
-msgid "Event"
-msgstr "Event"
+msgid "car.year"
+msgstr "Year"
 
-msgid "Email kontaktowy"
-msgstr "Contact email address"
+msgid "car.distance"
+msgstr "Distance"
 
-msgid "Booking"
-msgstr "Booking"
+msgid "car.fuel"
+msgstr "Fuel type"
 
-msgid "Remixy"
-msgstr "Remixes"
+msgid "car.engine"
+msgstr "Engine type"
 
+msgid "car.transmission"
+msgstr "Transmission"
+
+msgid "car.color"
+msgstr "Color"
+
+msgid "car.country"
+msgstr "Registration country"
+
+msgid "car.price"
+msgstr "Price"
+
+msgid "contact.askAboutCarButtonLabel"
+msgstr "Ask about this car"
+
+msgid "car.description"
+msgstr "Description"
+
+msgid "search.formLabel"
+msgstr "Search"
+
+msgid "search.formSubLabel"
+msgstr "in our offer"
+
+msgid "search.carTypes"
+msgstr "Car types"
+
+msgid "search.carBrands"
+msgstr "Car brands"
+
+msgid "search.carModels"
+msgstr "Car models"
+
+msgid "search.searchButtonLabel"
+msgstr "Search"
+
+msgid "search.allModelsLabel"
+msgstr "ALL CAR MODELS"
+
+msgid "index.vehiclesListHeader"
+msgstr "OUR OFFER"
+
+msgid "No result"
+msgstr "No result"
+
+msgid "Actions"
+msgstr ""
+
+msgid "[0] no result|[1] 1 result|(1,+Inf] %1% results"
+msgstr ""
+
+msgid "(page %%page%%/%%nb_pages%%)"
+msgstr ""
+
+msgid "Lista pojazdów"
+msgstr "List"

@@ -1,8 +1,8 @@
-CREATE TABLE events (id BIGINT AUTO_INCREMENT, date_start DATETIME NOT NULL, date_end DATETIME NOT NULL, country VARCHAR(100) NOT NULL, place VARCHAR(100) NOT NULL, location VARCHAR(100) NOT NULL, event VARCHAR(200) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE news_translation (id BIGINT, msgtitle VARCHAR(255) NOT NULL, msgbody text NOT NULL, lang CHAR(2), PRIMARY KEY(id, lang)) ENGINE = INNODB;
-CREATE TABLE news (id BIGINT AUTO_INCREMENT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, title_slug VARCHAR(255), UNIQUE INDEX news_sluggable_idx (title_slug), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE videos_translation (id BIGINT, title VARCHAR(100) NOT NULL, description TEXT NOT NULL, lang CHAR(2), PRIMARY KEY(id, lang)) ENGINE = INNODB;
-CREATE TABLE videos (id BIGINT AUTO_INCREMENT, link VARCHAR(200) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE cars_translation (id BIGINT, title TEXT, description text, fuel TEXT, engine TEXT, color TEXT, country TEXT, price TEXT, lang CHAR(2), PRIMARY KEY(id, lang)) ENGINE = INNODB;
+CREATE TABLE cars (id BIGINT AUTO_INCREMENT, model_id BIGINT, variant_id BIGINT, year TEXT, distance BIGINT NOT NULL, transmission VARCHAR(255), promoted TINYINT(1), slider TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255), UNIQUE INDEX cars_sluggable_idx (slug), INDEX variant_id_idx (variant_id), INDEX model_id_idx (model_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE fotos (id BIGINT AUTO_INCREMENT, filename TEXT, car_id BIGINT, is_primary TINYINT(1) DEFAULT '0', created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX car_id_idx (car_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE models (id BIGINT AUTO_INCREMENT, name TEXT, brand TEXT, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE variants (id BIGINT AUTO_INCREMENT, name TEXT, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_forgot_password (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id BIGINT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group_permission (group_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
@@ -11,8 +11,10 @@ CREATE TABLE sf_guard_remember_key (id BIGINT AUTO_INCREMENT, user_id BIGINT, re
 CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), email_address VARCHAR(255) NOT NULL UNIQUE, username VARCHAR(128) NOT NULL UNIQUE, algorithm VARCHAR(128) DEFAULT 'sha1' NOT NULL, salt VARCHAR(128), password VARCHAR(128), is_active TINYINT(1) DEFAULT '1', is_super_admin TINYINT(1) DEFAULT '0', last_login DATETIME, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX is_active_idx_idx (is_active), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
-ALTER TABLE news_translation ADD CONSTRAINT news_translation_id_news_id FOREIGN KEY (id) REFERENCES news(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE videos_translation ADD CONSTRAINT videos_translation_id_videos_id FOREIGN KEY (id) REFERENCES videos(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE cars_translation ADD CONSTRAINT cars_translation_id_cars_id FOREIGN KEY (id) REFERENCES cars(id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE cars ADD CONSTRAINT cars_variant_id_variants_id FOREIGN KEY (variant_id) REFERENCES variants(id);
+ALTER TABLE cars ADD CONSTRAINT cars_model_id_models_id FOREIGN KEY (model_id) REFERENCES models(id);
+ALTER TABLE fotos ADD CONSTRAINT fotos_car_id_cars_id FOREIGN KEY (car_id) REFERENCES cars(id);
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_permission_id_sf_guard_permission_id FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD CONSTRAINT sf_guard_group_permission_group_id_sf_guard_group_id FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;

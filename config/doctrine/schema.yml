@@ -1,88 +1,108 @@
-News:
+Car:
   actAs:
     I18n:
-      fields: [msgtitle,msgbody]
+      fields:
+        - title
+        - description
+        - color
+        - fuel
+        - engine
+        - country
+        - price
     Timestampable: ~
     Sluggable:
-      name:         title_slug
-      alias:        slug
-      unique:       true
-      fields:       [msgtitle]
-      canUpdate:    true
-  tableName:    news
+      name:     slug
+      fields:
+        - title
+  tableName:    cars
   columns:
-    msgtitle:
-      type:     string
-      length:   255
-      notnull:  true
-      unique:   false  
-    msgbody:
-      type:     text
-      notnull:  true 
-      
-Event:
-  actAs:
-    Timestampable: ~
-  tableName:    events
-  columns:
-    date_start:
-      type:     timestamp
-      notnull:  true
-      unique:   false
-    date_end:
-      type:     timestamp
-      notnull:  true
-      unique:   false
-#    hour_start:
-#      type:     string
-#      length:   5
-#      notnull:  true
-#      unique:   false  
-#    hour_end:
-#      type:     string
-#      length:   5
-#      notnull:  true
-#      unique:   false  
-    country:
-      type:     string
-      length:   100
-      notnull:  true
-      unique:   false  
-    place:
-      type:     string
-      length:   100
-      notnull:  true
-      unique:   false  
-    location:
-      type:     string
-      length:   100
-      notnull:  true
-      unique:   false  
-    event:
-      type:     string
-      length:   200
-      notnull:  true
-      unique:   false  
-
-Video:
-  actAs:
-    Timestampable: ~
-    I18n:
-      fields: [title,description]
-  tableName:    videos
-  columns:
-    link:
-      type:     string
-      length:   200
-      notnull:  true
-      unique:   false  
+    model_id:
+      type:     integer
+    variant_id:
+      type:     integer
     title:
       type:     string
-      length:   100
-      notnull:  true
-      unique:   false 
+      length:   1024
     description:
+      type:     text
+    year:
       type:     string
-      length:   400
+      length:   1024
+    distance:
+      type:     integer
       notnull:  true
-      unique:   false 
+    fuel:
+      type:     string
+      length:   1024
+    engine:
+      type:     string
+      length:   1024
+    transmission:
+      type:     enum
+      values:
+        - manual
+        - automatic
+        - semi-auto
+    color:
+      type:     string
+      length:   1024
+    country:
+      type:     string
+      length:   1024
+    price:
+      type:     string
+      length:   1024
+    promoted:
+      type:     boolean
+    slider:
+      type:     boolean
+  relations:
+    Variant:
+      local:    variant_id
+      foreign:  id
+    Model:
+      local:    model_id
+      foreign:  id
+#    Foto:
+#     local:    id
+#     type:      one
+#     foreign:  car_id
+#     foreignType: many
+
+Variant:
+  tableName:    variants
+  columns:
+    name:
+      type:     string
+      length:   1024
+     
+Model:
+  tableName:    models
+  columns:
+    name:
+      type:     string
+      length:   1024
+    brand:
+      type:     string
+      length:   1024
+
+Foto:
+  actAs:
+    Timestampable: ~
+  tableName:    fotos
+  columns:
+    filename:
+      type:     string
+      length:   1024
+    car_id:
+      type:     integer
+    is_primary:
+      type:     boolean
+      default:  false
+  relations:
+    Car:
+      local:    car_id
+      foreign:  id
+#      type:     one
+      foreignAlias: Fotos
+#      foreignType: many

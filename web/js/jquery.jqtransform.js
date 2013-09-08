@@ -106,7 +106,10 @@
 					$('a.selected',$wrapper).removeClass('selected');
 					$(this).addClass('selected');	
 					/* Fire the onchange event */
-					if ($select[0].selectedIndex != $(this).attr('index')&&$select[0].onchange){ $select[0].selectedIndex=$(this).attr('index'); $select[0].onchange()}
+					if ($select[0].selectedIndex != $(this).attr('index')) {
+                                            $select[0].selectedIndex = $(this).attr('index');
+                                            $($select[0]).trigger('change');
+                                        }
 					$select[0].selectedIndex=$(this).attr('index');
 					$('div:eq(0)',$wrapper).html($(this).html());
 					$ul.hide();

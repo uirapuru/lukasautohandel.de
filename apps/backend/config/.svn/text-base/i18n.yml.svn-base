@@ -1,3 +1,0 @@
-all:
-  default_culture:  pl
-  source:            gettext

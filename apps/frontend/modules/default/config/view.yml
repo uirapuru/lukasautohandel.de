@@ -1,10 +1,10 @@
 all:
   has_layout: true
-indexSuccess:
-  has_layout: true
-  layout:     intro
-  stylesheets: [-*]
-  javascripts: [-*]
+#indexSuccess:
+#  has_layout: true
+#  layout:     intro
+#  stylesheets: [-*]
+#  javascripts: [-*]
 videoSuccess:  
   stylesheets:
     - /css/vendor/prettyPhoto.css

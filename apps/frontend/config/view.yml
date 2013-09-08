@@ -6,24 +6,28 @@ default:
     content-type: text/html
 
   metas:
-    title:        Thomas Cloud Official Site
-    description:  Thomas Cloud Official Site
-    keywords:     dj, muzyka
-    language:     en,pl
+    title:        Lukas Autohandel
+    description:  Lukas Autohandel
+    keywords:     car, auto, samochód
+    language:     en,pl,de
     robots:       index, follow
 
   stylesheets:
-    - ui-lightness/jquery-ui-1.8.21.custom.css
-    - bootstrap.min.css
-    - /css/vendor/960.gs/960_16_col.css
-    - main.css
-    
+    - bootstrap.css
+    - slider.css
+    - jqtransform.css
+    - prettyPhoto.css
+    - style.css
   javascripts:
-    - /js/vendor/jquery-1.7.2.min.js
-    - /js/vendor/jquery-ui-1.8.21.custom.min.js
-    - /js/vendor/jquery-ui-sliderAccess.js
-    - /js/vendor/jquery-ui-timepicker-addon.js
-    - /js/vendor/modernizr-2.5.3.min.js
-    - main.js
+    - jquery-1.7.1.min.js
+    - jquery.easing.1.3.js
+    - superfish.js
+    - jquery.jqtransform.js
+    - camera.js
+    - jquery.hoverIntent.minified.js
+    - jquery.ui.totop.js
+    - jquery.mobilemenu.js
+    - jquery.prettyPhoto.js
+    - script.js
   has_layout:     true
   layout:         layout

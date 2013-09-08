@@ -11,7 +11,7 @@ dev:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              true
     cache:                  false
-    no_script_name:         false
+    no_script_name:         true
     etag:                   false
 
 test:
@@ -31,7 +31,7 @@ all:
     csrf_secret:            0bcbaad19ba5a7e64495db92c6170a0104ccbdb4
 
     # Output escaping settings
-    escaping_strategy:      true
+    escaping_strategy:      false
     escaping_method:        ESC_SPECIALCHARS
 
     # Enable the database manager
@@ -39,7 +39,7 @@ all:
     
     charset:                utf-8
     i18n:                   on
-    default_culture:       pl
+    default_culture:        pl
     standard_helpers:
       - I18N
       - Partial

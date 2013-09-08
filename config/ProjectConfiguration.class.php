@@ -14,6 +14,7 @@ class ProjectConfiguration
             'sfDoctrinePlugin',
             'sfDoctrineGuardPlugin',
         ));
-    }
+//      $this->enablePlugins('sfDoctrineActAsTaggablePlugin');
+  }
 
 }

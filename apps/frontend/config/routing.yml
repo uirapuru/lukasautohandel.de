@@ -1,76 +1,52 @@
-pl:
-  url: /pl
-  param: {module: default, action: changeLanguage, lang: pl }
-en:
-  url: /en
-  param: {module: default, action: changeLanguage, lang: en }
-
-show_news:
-  url: /news/:id/:date/:title
-  param: {module: default, action: showNews }
-addnews:
-  url: /add-news
-  param: { module: news, action: index }
-news:
-  url: /news
-  param: { module: default, action: news }
-bio:
-  url: /bio
-  param: { module: default, action: bio }
+car:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Car
+    module:               cars
+    prefix_path:          /cars
+    column:               id
+    with_wildcard_routes: true
+    
+search:
+  url: /search
+  param: {module: default, action: search }
   
-music:
-  url: /music
-  param: { module: default, action: music }
-
-radio:
-  url: /radio
-  param: { module: default, action: radio }
-
-schedule:
-  url: /schedule
-  param: { module: default, action: schedule }
-
-video:
-  url: /video
-  param: { module: default, action: video }
-
-press:
-  url: /press
-  param: { module: default, action: press }
-
+search_reset:
+  url: /search/reset
+  param: {module: default, action: search, _reset: true }
+  
 contact:
   url: /contact
-  param: { module: default, action: contact }
-
-# / dzialy na stronie
-sf_guard_signin:
-  url:   /login
-  param: { module: sfGuardAuth, action: signin }
-
-sf_guard_signout:
-  url:   /logout
-  param: { module: sfGuardAuth, action: signout }
-
-sf_guard_password:
-  url:   /request_password
-  param: { module: sfGuardAuth, action: password }
+  param: {module: default, action: contact }
+  
+contact_ask:
+  url: /contact/:id
+  class: sfDoctrineRoute
+  options:
+    model:                Car
+    column:               id
+    type:                 object
+  requirements:
+    sf_method: [get,post]
+  param: {module: default, action: contact }
   
 language:
-  url: /change-language/:lang
+  url: /language/:lang
   param: { module : default, action: changeLanguage }
+
+show:
+  url: /:id/:slug
+  param: {module: default, action: show }
+  class: sfDoctrineRoute
+  options:
+    model:                Car
+    column:               id
+    type:                 object
   
-intro:
+  
+homepage:
   url:   /
   param: { module: default, action: index }
-homepage:
-  url:   /main
-  param: { module: default, action: main }
-
-# generic rules
-# please, remove them by adding more specific rules
-default_index:
-  url:   /:module
-  param: { action: index }
 
 default:
   url:   /:module/:action/*

@@ -2,9 +2,9 @@
 # http://www.symfony-project.org/reference/1_4/en/07-Databases
 
 all:
-  ThomasCloud:
+  LukasAutohandel:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=thomascloud
+      dsn:      mysql:host=localhost;dbname=lukasautohandel
       username: root
       password: root

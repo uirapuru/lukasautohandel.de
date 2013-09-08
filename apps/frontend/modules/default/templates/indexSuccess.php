@@ -1,40 +1,46 @@
-<style>
-    html {
-        height: 100%;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-    body {
-        background-color: #000000;
-        background-image: url("/images/intro_bg.jpg");
-        background-position: center 57px;
-        background-repeat: no-repeat;
-        margin:0;
-        padding:0;
-        /*overflow: hidden;*/
-        width: 100%;
-        /*height: 100%;*/
-    }
-    
-    ul {
-        text-align: center;
-        margin: 437px 0 0 0;
-        padding: 0;
-    }
-   
-    ul li {
-        display: inline-block;
-    }
-    ul li#choose {
-        display: inline-block;
-        margin: 0 80px
-    }
-    
-</style>
-
-<ul>
-    <li><a href="<?php echo url_for("@pl"); ?>"><img src="/images/button-lang-pl.png" alt="Polski"/></a></li>
-    <li id="choose"><img src="/images/choose-lang.png" alt="Choose language"/></li>
-    <li><a href="<?php echo url_for("@en"); ?>"><img src="/images/button-lang-en.png" alt="English"/></a></li>
-</ul>
+<div class="grid_8">
+    <div class="inner-block">
+        <h2 class="h2-border"><?= __("index.vehiclesListHeader"); ?> <a href="<?= url_for("@search_reset"); ?>" class="link"><?= __("search.all"); ?></a></h2>
+        <div class="box-1">
+            <? for ($col = 0; $col < 2; $col++): ?>
+                <ul <?= $col == 1 ? ' class="last"' : ''; ?>>
+                    <? foreach ($cars[$col] as $car): ?>
+                        <li>
+                            <img src="<?= $car->getPrimaryFoto() ?>" alt="">
+                            <h3><?= $car->getModel()->getBrand() . " " . $car->getModel()->getName(); ?></h3>
+                            <p><?= $car->getTitle() ?></p>
+                            <p class="price"><?= $car->getPrice() ?><span>other info</span></p>
+                            <a href="<?= url_for("@show?id=".$car->getId()."&slug=".$car->getSlug());?>" class="button"><?= __("car.details"); ?></a>
+                        </li>
+                    <? endforeach; ?>
+                </ul>
+            <? endfor; ?>
+        </div>
+    </div>
+</div>
+<div class="grid_4">
+    <div class="inner-block">
+        <h2 class="h2-border p3">About us</h2>
+        <p class="p1">Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore.</p>
+        <p class="p4">sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+        
+        <? /*
+        <h2 class="h2-border">latest news <a href="#" class="link">See all</a></h2>
+        <ul class="box-2">
+            <li>
+                <a href="#" class="link-2">25.12.2012</a>
+                <p><a href="#" class="link-3">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud<span></span></a></p>
+            </li>
+            <li>
+                <a href="#" class="link-2">25.12.2012</a>
+                <p><a href="#" class="link-3">dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud set magna<span></span></a></p>
+            </li>
+            <li>
+                <a href="#" class="link-2">25.12.2012</a>
+                <p><a href="#" class="link-3">sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam<span></span></a></p>
+            </li>
+        </ul>
+         * 
+         */ ?>
+    </div>
+</div>

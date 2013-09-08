@@ -2,111 +2,136 @@
 
 class defaultActions extends sfActions {
 
-    public function postExecute() {
-        parent::postExecute();
-
-        $events = Doctrine_Core::getTable('Event')
-                ->createQuery('a')
-                ->orderBy("date_start ASC")
-                ->where("date_end > ?", date("Y-m-d H:i:s"))
-                ->limit(4)
-                ->execute();
-
-        $this->getResponse()->setSlot('events', $this->getPartial("events", array("events" => $events)));
-        $this->getResponse()->setSlot('fb', $this->getPartial("fb"));
-        $this->getResponse()->setSlot('cloud', $this->getPartial("cloud"));
-    }
-
-    public function executeIndex(sfWebRequest $request) {
-        
-    }
-
-    public function executeMain(sfWebRequest $request) {
-        $this->news = Doctrine_Core::getTable('News')
-                ->createQuery('a')
-                ->limit(5)
-                ->orderBy('a.created_at DESC')
-                ->execute();
-    }
-
-    public function executeNews(sfWebRequest $request) {
-        $this->pager = new sfDoctrinePager('News', 2);
-        $this->pager->setQuery(NewsTable::getInstance()->createQuery('a')->orderBy('a.created_at DESC'));
-        $this->pager->setPage($request->getParameter('page', 1));
-        $this->pager->init();
-    }
-
-    /**
-     * @param sfWebRequest $request
-     */
-    public function executeShowNews(sfWebRequest $request) {
-        $this->news = NewsTable::getInstance()->createQuery('a')->where('id = ?', $request->getParameter("id"))->fetchOne();
-//                ($request->getParameter("id"));
-    }
-
-    public function executeBio(sfWebRequest $request) {
-        
-    }
-
-    public function executeMusic(sfWebRequest $request) {
-        
-    }
-
-    public function executeRadio(sfWebRequest $request) {
-        
-    }
-
-    public function executeSchedule(sfWebRequest $request) {
-        $this->events = Doctrine_Core::getTable('Event')
-                ->createQuery('a')
-                ->orderBy("date_start ASC")
-                ->where("date_end > ?", date("Y-m-d H:i:s"))
-                ->execute();
-    }
-
-    public function executeVideo(sfWebRequest $request) {
-        $this->videos = Doctrine_Core::getTable('Video')
-                ->createQuery('a')
-                ->orderBy("id DESC")
-                ->execute();
-    }
-
-    public function executePress(sfWebRequest $request) {
-        
-    }
-
     public function executeContact(sfWebRequest $request) {
+        $this->car = null;
+        
+        if($this->getRoute() instanceof sfDoctrineRoute)
+        {
+            $this->car = $this->getRoute()->getObject();
+        }
+        
         $this->form = new ContactForm(null, array(
-                    "culture" => $this->getUser()->getCulture()
+            "culture" => $this->getUser()->getCulture()
+        ));
+
+        if ($request->isMethod("POST"))
+        {
+            $this->form->bind($request->getParameter($this->form->getName()));
+            if ($this->form->isValid())
+            {
+//                $headers = 'From: ' . $this->form->getValue("name") . "<" . $this->form->getValue("email") . ">" . "\r\n" .
+//                        'Reply-To: ' . $this->form->getValue("name") . "<" . $this->form->getValue("email") . ">";
+//                $failure = mail("uirapuruadg@gmail.com", "E-mail message from lukasautohandel.de", $this->form->getValue("body"), $headers);
+
+                $transport = Swift_SmtpTransport::newInstance(sfConfig::get("app_swiftmailer_smtp"), sfConfig::get("app_swiftmailer_port"), "ssl")
+                        ->setUsername(sfConfig::get("app_swiftmailer_username"))
+                        ->setPassword(sfConfig::get("app_swiftmailer_password"))
+                ;
+
+                $mailer = Swift_Mailer::newInstance($transport);
+
+                $message = Swift_Message::newInstance(sfConfig::get("app_swiftmailer_subject"));
+
+                $body = $this->getPartial("global/email", array(
+                    "body"  => $this->form->getValue("body"),
+                    "email" => $this->form->getValue("email"),
+                    "name"  => $this->form->getValue("name"),
+                    "phone" => $this->form->getValue("phone"),
+                    "car" => $this->car,
+                    "message" => $message
                 ));
 
-        if ($request->isMethod("POST")) {
-            $this->form->bind($request->getParameter($this->form->getName()));
-            if ($this->form->isValid()) {
+                $message->setFrom(array($this->form->getValue("email") => $this->form->getValue("name")))
+                        ->setReplyTo(array($this->form->getValue("email") => $this->form->getValue("name")))
+                        ->setTo(array(sfConfig::get("app_swiftmailer_toEmail")))
+                        ->setBody($body,'text/html','UTF8');
 
-                $headers = 'From: ' . $this->form->getValue("name") . "<" . $this->form->getValue("email") . ">" . "\r\n" .
-                        'Reply-To: ' . $this->form->getValue("name") . "<" . $this->form->getValue("email") . ">" . "\r\n";
+                $result = $mailer->send($message);
 
-                mail("info@thomascloudofficial.com", contactForm::$subjects[$this->form->getValue("subject")], $this->form->getValue("body"), $headers);
-                if ($this->getUser()->getCulture() == "en"):
-                    $this->getUser()->setFlash('notice', 'Your message has been send');
-                else:
-                    $this->getUser()->setFlash('notice', 'Dziękujemy za przesłanie wiadomości');
-                endif;
-
-//                $mail = $this->getMailer()->compose(array($this->form->getValue("email") => $this->form->getValue("name")), "info@thomascloudofficial.com", contactForm::$subjects[$this->form->getValue("subject")], $this->form->getValue("body"));
-//                $response = $this->getMailer()->send($mail);
-                $this->redirect($this->getController()->genUrl("@contact"));
+                $this->getUser()->setFlash("notice", "Contact form submitted!<br><strong> We will be in touch soon.</strong>");
+                
+                $this->redirect("@contact");
             }
         }
     }
 
+    public function executeShow(sfWebRequest $request) {
+        $this->car = $this->getRoute()->getObject();
+    }
+
+    public function executeIndex(sfWebRequest $request) {
+        $this->getResponse()->setSlot("header", $this->getPartial("header"));
+
+        $cars = CarTable::getInstance()->getPromotedCars();
+        $this->cars = array();
+        foreach ($cars as $index => $car) {
+            $this->cars[$index % 2][] = $car;
+        }
+    }
+
     public function executeChangeLanguage(sfWebRequest $request) {
-        if ($request->hasParameter('lang')) {
-            $this->getUser()->setCulture($request->getParameter('lang', 'pl'));
+        $language = $request->getParameter("lang","pl");
+        $this->getUser()->setCulture($language);
+        $this->redirect("@homepage");
+    }
+    public function executeSearch(sfWebRequest $request) {
+        $query = CarTable::getCarsQuery();
+
+        CarTable::addSortOrder($query, 'created_at DESC');
+        // filtr
+
+        $this->formFilter = new CarFormFilter();
+
+        $filterValues = $request->getParameter($this->formFilter->getName(), array(
+            "model_id"   => null,
+            "variant_id" => null,
+            "brand"      => null,
+        ));
+
+        if ($request->getParameter("_reset", false) == true)
+        {
+            $this->getUser()->setAttribute("filterValues", array(
+                "model_id"   => null,
+                "variant_id" => null,
+                "brand"      => null,
+            ));
+            $this->redirect("@search");
         }
 
-        $this->redirect($this->getController()->genUrl("@homepage"));
+        if ($filterValues["model_id"])
+        {
+            CarTable::addModel($query, $filterValues["model_id"]);
+        }
+        if ($filterValues["variant_id"])
+        {
+            CarTable::addVariant($query, $filterValues["variant_id"]);
+        }
+        if ($filterValues["brand"])
+        {
+            CarTable::addBrand($query, $filterValues["brand"]);
+        }
+
+        $this->formFilter->setQuery($query);
+
+
+
+        $this->getUser()->setAttribute("filterValues", $filterValues);
+
+        $this->formFilter->bind($filterValues);
+
+        if ($this->formFilter->isValid())
+        {
+            $query = $this->formFilter->getQuery();
+        }
+
+        // pager
+
+        $this->pager = new sfDoctrinePager(
+                'Car', 5
+        );
+        $this->pager->setQuery($query);
+        $this->pager->setPage($request->getParameter('page', 1));
+        $this->pager->init();
     }
 
 }
