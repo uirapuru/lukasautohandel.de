@@ -1,4 +1,5 @@
-nbproject/*
-lib/vendor/*
-cache/*
-log/*
+nbproject
+lib/vendor
+cache
+log
+web/uploads
