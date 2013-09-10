@@ -63,11 +63,12 @@ Car:
     Model:
       local:    model_id
       foreign:  id
-#    Foto:
-#     local:    id
-#     type:      one
-#     foreign:  car_id
-#     foreignType: many
+    Fotos:
+      type:       many
+      class:      Foto
+      local:      id
+      foreign:    car_id
+      onDelete:   CASCADE
 
 Variant:
   tableName:    variants
@@ -101,8 +102,5 @@ Foto:
       default:  false
   relations:
     Car:
-      local:    car_id
-      foreign:  id
-#      type:     one
-      foreignAlias: Fotos
-#      foreignType: many
+      type: one
+      local: car_id

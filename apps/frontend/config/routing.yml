@@ -1,3 +1,7 @@
+addNewFoto:
+  url: /addNewFoto
+  param: {module: cars, action: addNewFoto }
+
 car:
   class: sfDoctrineRouteCollection
   options:

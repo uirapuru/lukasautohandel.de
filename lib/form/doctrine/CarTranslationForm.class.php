@@ -12,5 +12,12 @@ class CarTranslationForm extends BaseCarTranslationForm
 {
   public function configure()
   {
+      $this->widgetSchema["title"] = new sfWidgetFormInputText();
+      $this->widgetSchema["description"] = new sfWidgetFormTextarea();
+      $this->widgetSchema["fuel"] = new sfWidgetFormInputText();
+      $this->widgetSchema["engine"] = new sfWidgetFormInputText();
+      $this->widgetSchema["color"] = new sfWidgetFormInputText();
+      $this->widgetSchema["country"] = new sfWidgetFormInputText();
+      $this->widgetSchema["price"] = new sfWidgetFormInputText();
   }
 }

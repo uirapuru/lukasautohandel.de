@@ -139,7 +139,8 @@ abstract class BaseCar extends sfDoctrineRecord
 
         $this->hasMany('Foto as Fotos', array(
              'local' => 'id',
-             'foreign' => 'car_id'));
+             'foreign' => 'car_id',
+             'onDelete' => 'CASCADE'));
 
         $i18n0 = new Doctrine_Template_I18n(array(
              'fields' => 

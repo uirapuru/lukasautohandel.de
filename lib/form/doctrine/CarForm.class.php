@@ -11,12 +11,22 @@
 class CarForm extends BaseCarForm {
 
     public function configure() {
-        unset($this->widgetSchema["id"]);
-        unset($this->widgetSchema["created_at"]);
-        unset($this->widgetSchema["updated_at"]);
-        
+        unset($this['model_id']);
+        unset($this['variant_id']);
+        unset($this['created_at']);
+        unset($this['updated_at']);
+        unset($this['slug']);
+
+        $this->embedRelation("Variant");
+        $this->embedRelation("Model");
+
+        $this->embedI18n(array("pl", "en", "de"));
+
+        $this->widgetSchema["year"] = new sfWidgetFormInputText();
+
         $this->disableCSRFProtection();
-        
+        $this->embedRelation("Fotos");
     }
+
 
 }

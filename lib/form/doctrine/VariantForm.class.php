@@ -12,5 +12,6 @@ class VariantForm extends BaseVariantForm
 {
   public function configure()
   {
+      $this->widgetSchema["name"] = new sfWidgetFormInputText();
   }
 }
