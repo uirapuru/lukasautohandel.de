@@ -16,7 +16,7 @@
         <?= include_javascripts(); ?>
 
         <!--[if (gt IE 9)|!(IE)]><!-->
-        <script type="text/javascript" src="/js/jquery.mobile.customized.min.js"></script>
+        <!-- script type="text/javascript" src="/js/jquery.mobile.customized.min.js"></script -->
         <!--<![endif]-->
 
         <script>

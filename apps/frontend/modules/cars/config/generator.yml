@@ -12,15 +12,24 @@ generator:
     actions_base_class:    sfActions
 
     config:
-      actions: ~
+      actions: ~  
       fields:  ~
       list:
         title:              "Lista pojazdów"
+        batch_actions:      {}
         display:            
           - title
           - price
+          - promoted
+          - slider
           - created_at
         layout:             stacked
+        object_actions:
+          edit: {label: zmień, action: edit}
+#          _edit:      ~
+          _delete: {label: usuń }
+        actions:
+          new: {label: dodaj, action: addNewCar}
       filter:
         class:  false
       form:    ~

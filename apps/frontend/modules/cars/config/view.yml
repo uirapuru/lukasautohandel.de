@@ -1,5 +1,9 @@
 all:
   has_layout: true
   stylesheets: ~
+editSuccess:
   javascripts:
     - carForm.js
+indexSuccess:
+  javascripts:
+    - carList.js

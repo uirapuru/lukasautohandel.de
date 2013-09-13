@@ -6,7 +6,7 @@
                 <? if ($pager->count() > 0): ?>
                     <? foreach ($pager->getResults() as $car): ?>
                         <li>
-                            <img src="<?= $car->getPrimaryFoto(); ?>" alt="">
+                            <img src="<?= $car->getPrimaryFoto(); ?>" alt="" style="width: 290px">
                             <div class="extra-wrap">
                                 <h3><?= $car->getTitle(); ?></h3>
                                 <p><?= substr($car->getDescription(),0,50); ?>...</p>

@@ -1,1 +1,1 @@
-<?= $form; ?>
+<?= include_partial("cars/newFoto", array("form" => $form['new'][$number], "isNew" => $isNew)); ?>

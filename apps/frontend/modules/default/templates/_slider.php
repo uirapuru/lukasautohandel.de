@@ -2,7 +2,7 @@
     <? foreach ($cars as $car): ?>
         <div data-src="<?= $car->getPrimaryFoto(); ?>">
             <div class="banner camera_caption fadeFromBottom">
-                <p><strong><?= $car->getModel()->getBrand() . " " . $car->getModel()->getName(); ?></strong>
+                <p><strong><?= $car->getBrand() . " " . $car->getModel(); ?></strong>
                     <a href="<?= url_for("@show?id=".$car->getId()."&slug=".$car->getSlug()); ?>"><?= $car->getTitle(); ?></a>
                 </p>
             </div>

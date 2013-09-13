@@ -1,6 +1,58 @@
+models_for_brand:
+  url: /modelsForBrand
+  param: {module: default, action: getModelsForBrand }
+  
+submitNewCar:
+  url: /submitCar/
+  param: {module: cars, action: submit }
+  
+updateCar:
+  url: /updateCar/:checkbox/:id
+  param: {module: cars, action: updateCheckbox }
+  class: sfDoctrineRoute
+  options:
+    model:                Car
+    column:               id
+    type:                 object
+  requirements:
+    sf_method: [get,post]
+deleteFotoObject:
+  url: /deleteFoto/:id
+  param: {module: cars, action: deleteFoto }
+  class: sfDoctrineRoute
+  options:
+    model:                Foto
+    column:               id
+    type:                 object
+  requirements:
+    sf_method: [get,post]
+  
+submitCar:
+  url: /submitCar/:id
+  param: {module: cars, action: submit }
+  class: sfDoctrineRoute
+  options:
+    model:                Car
+    column:               id
+    type:                 object
+  requirements:
+    sf_method: [get,post]
+    
+editCar:
+  url: /editCar/:id
+  param: {module: cars, action: edit }
+  class: sfDoctrineRoute
+  options:
+    model:                Car
+    column:               id
+    type:                 object
+    
 addNewFoto:
   url: /addNewFoto
   param: {module: cars, action: addNewFoto }
+addNewCar:
+  url: /addNewCar
+  param: {module: cars, action: addNewCar }
 
 car:
   class: sfDoctrineRouteCollection

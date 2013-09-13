@@ -12,7 +12,7 @@
             <? foreach ($car->getFotos() as $foto): ?>
                 <div data-src="/uploads/<?= $foto->getFilename(); ?>">
                     <div class="banner camera_caption fadeFromBottom">
-                        <p><strong><?= $car->getModel()->getBrand() . " " . $car->getModel()->getName(); ?></strong>
+                        <p><strong><?= $car->getBrand() . " " . $car->getModel(); ?></strong>
                             <a href="#"><?= $car->getTitle(); ?></a>
                         </p>
                     </div>
@@ -43,11 +43,11 @@
                 <tbody>
                     <tr>
                         <td><?= __("car.brand"); ?></td>
-                        <td><?= $car->getModel()->getBrand(); ?></td>
+                        <td><?= $car->getBrand(); ?></td>
                     </tr>
                     <tr>
                         <td><?= __("car.model"); ?></td>
-                        <td><?= $car->getModel()->getName(); ?></td>
+                        <td><?= $car->getModel(); ?></td>
                     </tr>
                     <tr>
                         <td><?= __("car.year"); ?></td>

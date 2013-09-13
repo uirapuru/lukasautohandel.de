@@ -6,18 +6,23 @@
                 <label>
                     <span><?= __("search.carTypes"); ?></span>
                     <strong class="select1">
-                        <?= $filterForm["variant_id"]->render(); ?>
+                        <?= $filterForm["variant"]->render(); ?>
                     </strong>
                 </label>
                 <label>
                     <span><?= __("search.carBrands"); ?></span>
                     <strong class="select1">
-                        <?= $filterForm["brand"]->render(); ?>
+                        <?=
+                        $filterForm["brand"]->render(array(
+                            "data-models-url"      => url_for("@models_for_brand"),
+                            "data-models-selected" => $filterForm["model"]->getValue(),
+                        ));
+                        ?>
                     </strong>
                 </label>
                 <label><span><?= __("search.carModels"); ?></span>
                     <strong class="select1">
-                        <?= $filterForm["model_id"]->render(); ?>
+                        <?= $filterForm["model"]->render(); ?>
                     </strong>
                 </label>
                 <a onClick="document.getElementById('form1').submit()" href="#" class="button"><?= __("search.searchButtonLabel"); ?></a>
@@ -29,17 +34,36 @@
 <script>
     $(function() {
         var $brandSelect = $("select[name=car_filters\\[brand\\]]");
-        var $modelSelect = $("select[name=car_filters\\[model_id\\]]");
+        var $modelSelect = $("select[name=car_filters\\[model\\]]");
         var emptyModelOption = '<option value=""><?= __("search.allModelsLabel"); ?></option>';
 
-        $brandSelect.data("groups", $("optgroup", $modelSelect));
-        $("optgroup", $modelSelect).remove();
         $modelSelect.html(emptyModelOption);
 
         $brandSelect.change(function(e) {
-            $("optgroup", $modelSelect).remove();
-            var options = $(this).data("groups").filter("[label='" + $(this).val() + "']").html();
-            $modelSelect.html(emptyModelOption + options);
+            if ($(this).val() == "") {
+                return false;
+            }
+
+            $brandSelect.data("lastModelOption", $(":selected", $modelSelect));
+
+            $.get(
+                    $(this).attr("data-models-url"),
+                    {
+                        brand: $(this).val()
+                    },
+            function(data) {
+                $modelSelect.html(emptyModelOption);
+                $.each(data, function(key, val) {
+                    var $option = $("<option />").text(key).val(val);
+                    if (val == $brandSelect.attr("data-models-selected"))
+                    {
+                        $option.attr("selected", "SELECTED");
+                    }
+
+                    $modelSelect.append($option);
+                });
+            }
+            );
         });
 
         $brandSelect.trigger("change");
