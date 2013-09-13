@@ -13,8 +13,9 @@ abstract class BaseCarFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'model_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Model'), 'add_empty' => true)),
-      'variant_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Variant'), 'add_empty' => true)),
+      'model'        => new sfWidgetFormFilterInput(),
+      'brand'        => new sfWidgetFormFilterInput(),
+      'variant'      => new sfWidgetFormFilterInput(),
       'year'         => new sfWidgetFormFilterInput(),
       'distance'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'transmission' => new sfWidgetFormChoice(array('choices' => array('' => '', 'manual' => 'manual', 'automatic' => 'automatic', 'semi-auto' => 'semi-auto'))),
@@ -26,8 +27,9 @@ abstract class BaseCarFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'model_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Model'), 'column' => 'id')),
-      'variant_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Variant'), 'column' => 'id')),
+      'model'        => new sfValidatorPass(array('required' => false)),
+      'brand'        => new sfValidatorPass(array('required' => false)),
+      'variant'      => new sfValidatorPass(array('required' => false)),
       'year'         => new sfValidatorPass(array('required' => false)),
       'distance'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'transmission' => new sfValidatorChoice(array('required' => false, 'choices' => array('manual' => 'manual', 'automatic' => 'automatic', 'semi-auto' => 'semi-auto'))),
@@ -56,8 +58,9 @@ abstract class BaseCarFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'           => 'Number',
-      'model_id'     => 'ForeignKey',
-      'variant_id'   => 'ForeignKey',
+      'model'        => 'Text',
+      'brand'        => 'Text',
+      'variant'      => 'Text',
       'year'         => 'Text',
       'distance'     => 'Number',
       'transmission' => 'Enum',

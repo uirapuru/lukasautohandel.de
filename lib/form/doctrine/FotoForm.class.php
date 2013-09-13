@@ -19,29 +19,26 @@ class FotoForm extends BaseFotoForm {
             "edit_mode"   => $this->getObject()->isNew() ? false : true,
             "file_src"    => $this->getObject()->getFileName(),
             "is_image"    => true,
-            "with_delete" => false,
-            "template"    => ($this->getObject()->isNew() ? '' : '<a href="/uploads/' . $this->getObject()->getFilename() . '">Preview file</a><br />') . '%input%',
+            "with_delete" => true,
+            "template"    => ($this->getObject()->isNew() ? '' : '<div class="container-fluid"><div class="row-fluid"><a class="thumbnail span4" href="/uploads/' . $this->getObject()->getFilename() . '"><img src="/uploads/' . $this->getObject()->getFilename() . '" /></a></div></div>') . '<div class="container-fluid"><div class="row-fluid">%input%</div></div> <div style="display: none33">%delete%</div>',
         ));
+
+        $this->widgetSchema["primary"] = new sfWidgetFormInputCheckbox();
 
         $this->validatorSchema["filename"] = new sfValidatorFile(array(
             "required" => false,
             "max_size" => "2000000",
             "path"     => sfConfig::get("sf_upload_dir"),
         ));
-    }
+        $this->validatorSchema["filename_delete"] = new sfValidatorPass();
+        $this->validatorSchema["primary"] = new sfValidatorPass();
 
-    public function addNewFields($number) {
-        $newFotos = new BaseForm();
+        $this->disableCSRFProtection();
+        $this->disableLocalCSRFProtection();
 
-        for ($i = 0; $i <= $number; $i+=1) {
-            $fotos = new Foto();
-            $fotos->setCar($this->getObject());
-            $fotoForm = new FotoForm($fotos);
-
-            $newFotos->embedForm($i, $fotoForm);
-        }
-
-        $this->embedForm('new', $newFotos);
+        $custom_decorator = new sfWidgetFormSchemaFormatterBootstrapHorizontal($this->getWidgetSchema());
+        $this->getWidgetSchema()->addFormFormatter('BootstrapHorizontal', $custom_decorator);
+        $this->getWidgetSchema()->setFormFormatterName('BootstrapHorizontal');
     }
 
 }

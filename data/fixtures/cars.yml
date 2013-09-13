@@ -1,7 +1,8 @@
 Car:
   car_001:
-    Model:      "Audi-80"
-    Variant:    coupe
+    brand:      Audi
+    model:      80
+    variant:    coupe
     year:       2011
     distance:   200000
     fuel:       diesel
@@ -27,8 +28,9 @@ Car:
         fuel:         "diesel fuel"
         price:        "2 500 EUR"
   car_002:
-    Model:      "Mercedes-Benz-380"
-    Variant:    coupe
+    brand:      Mercedes-Benz
+    model:      380
+    variant:    coupe
     year:       2011
     distance:   200000
     fuel:       diesel
@@ -54,8 +56,9 @@ Car:
         fuel:         "diesel fuel"
         price:        "2 500 EUR"
   car_003:
-    Model:      "Mercedes-Benz-R Class"
-    Variant:    coupe
+    brand:      Mercedes-Benz
+    model:      R Class
+    variant:    coupe
     year:       2011
     distance:   200000
     fuel:       diesel
@@ -81,8 +84,9 @@ Car:
         fuel:         "diesel fuel"
         price:        "2 500 EUR"
   car_004:
-    Model:      "BMW-Z1"
-    Variant:    coupe
+    brand:      BMW
+    model:      Z1
+    variant:    coupe
     year:       2011
     distance:   200000
     fuel:       diesel
@@ -108,8 +112,9 @@ Car:
         fuel:         "diesel fuel"
         price:        "2 500 EUR"
   car_005:
-    Model:      "BMW-Z8"
-    Variant:    coupe
+    brand:      BMW
+    model:      Z8
+    variant:    coupe
     year:       2011
     distance:   200000
     fuel:       diesel

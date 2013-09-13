@@ -30,23 +30,23 @@ class CarFormFilter extends BaseCarFormFilter {
 
     public function configure() {
         $culture = sfContext::getInstance()->getUser()->getCulture();
-        
-        $brands = array(null => $this->labels[$culture]["all_brands"]) + ModelTable::getInstance()->getBrandsArray();
-        $models = array("null" => $this->labels[$culture]["all_models"]) + ModelTable::getInstance()->getModelsArray();
+
+        $brands = array(null => $this->labels[$culture]["all_brands"]) + CarTable::getInstance()->getBrandsArray();
+        $models = array(null => $this->labels[$culture]["all_models"]) + CarTable::getInstance()->getModelsArray();
+        $variants = array(null => $this->labels[$culture]["all_types"]) + CarTable::getInstance()->getVariantsArray();
 
         $this->setWidgets(array(
-            'variant_id' => new sfWidgetFormDoctrineChoice(
+            'variant' => new sfWidgetFormSelect(
                     array(
-                'model'     => $this->getRelatedModelName('Variant'),
-                'add_empty' => $this->labels[$culture]["all_types"]
+                "choices" => $variants
                     )
             ),
-            'brand'      => new sfWidgetFormSelect(
+            'brand'   => new sfWidgetFormSelect(
                     array(
                 "choices" => $brands
                     )
             ),
-            'model_id'   => new sfWidgetFormChoice(
+            'model'   => new sfWidgetFormChoice(
                     array(
                 "choices" => $models,
                     )
@@ -54,16 +54,29 @@ class CarFormFilter extends BaseCarFormFilter {
         ));
 
         $this->setValidators(array(
-            'brand'      => new sfValidatorPass(array('required' => false)),
-            'model_id'   => new sfValidatorDoctrineChoice(array('required' => false,
-                'model'    => $this->getRelatedModelName('Model'), 'column'   => 'id')),
-            'variant_id' => new sfValidatorDoctrineChoice(array('required' => false,
-                'model'    => $this->getRelatedModelName('Variant'), 'column'   => 'id')),
+            'brand'   => new sfValidatorPass(array('required' => false)),
+            'model'   => new sfValidatorPass(array('required' => false)),
+            'variant' => new sfValidatorPass(array('required' => false)),
         ));
 
         $this->widgetSchema->setNameFormat('car_filters[%s]');
 
         $this->disableCSRFProtection();
+    }
+
+    public function addBrandColumnQuery(Doctrine_Query $query, $field, $value) {
+        CarTable::getInstance()->addBrand($query, $value);
+        return $query;
+    }
+
+    public function addModelColumnQuery(Doctrine_Query $query, $field, $value) {
+        CarTable::getInstance()->addModel($query, $value);
+        return $query;
+    }
+
+    public function addVariantColumnQuery(Doctrine_Query $query, $field, $value) {
+        CarTable::getInstance()->addVariant($query, $value);
+        return $query;
     }
 
 }

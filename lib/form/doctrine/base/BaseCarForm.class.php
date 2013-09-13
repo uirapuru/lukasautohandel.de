@@ -16,8 +16,9 @@ abstract class BaseCarForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'model_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Model'), 'add_empty' => true)),
-      'variant_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Variant'), 'add_empty' => true)),
+      'model'        => new sfWidgetFormTextarea(),
+      'brand'        => new sfWidgetFormTextarea(),
+      'variant'      => new sfWidgetFormTextarea(),
       'year'         => new sfWidgetFormTextarea(),
       'distance'     => new sfWidgetFormInputText(),
       'transmission' => new sfWidgetFormChoice(array('choices' => array('manual' => 'manual', 'automatic' => 'automatic', 'semi-auto' => 'semi-auto'))),
@@ -30,8 +31,9 @@ abstract class BaseCarForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'model_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Model'), 'required' => false)),
-      'variant_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Variant'), 'required' => false)),
+      'model'        => new sfValidatorString(array('max_length' => 1024, 'required' => false)),
+      'brand'        => new sfValidatorString(array('max_length' => 1024, 'required' => false)),
+      'variant'      => new sfValidatorString(array('max_length' => 1024, 'required' => false)),
       'year'         => new sfValidatorString(array('max_length' => 1024, 'required' => false)),
       'distance'     => new sfValidatorInteger(),
       'transmission' => new sfValidatorChoice(array('choices' => array(0 => 'manual', 1 => 'automatic', 2 => 'semi-auto'), 'required' => false)),

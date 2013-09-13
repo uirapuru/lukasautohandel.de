@@ -16,10 +16,19 @@ Car:
         - title
   tableName:    cars
   columns:
-    model_id:
-      type:     integer
-    variant_id:
-      type:     integer
+#    model_id:
+#      type:     integer
+#    variant_id:
+#      type:     integer
+    model:
+      type:     string
+      length:   1024
+    brand:
+      type:     string
+      length:   1024
+    variant:
+      type:     string
+      length:   1024
     title:
       type:     string
       length:   1024
@@ -57,12 +66,12 @@ Car:
     slider:
       type:     boolean
   relations:
-    Variant:
-      local:    variant_id
-      foreign:  id
-    Model:
-      local:    model_id
-      foreign:  id
+#    Variant:
+#      local:    variant_id
+#      foreign:  id
+#    Model:
+#      local:    model_id
+#      foreign:  id
     Fotos:
       type:       many
       class:      Foto
@@ -70,22 +79,22 @@ Car:
       foreign:    car_id
       onDelete:   CASCADE
 
-Variant:
-  tableName:    variants
-  columns:
-    name:
-      type:     string
-      length:   1024
-     
-Model:
-  tableName:    models
-  columns:
-    name:
-      type:     string
-      length:   1024
-    brand:
-      type:     string
-      length:   1024
+#Variant:
+#  tableName:    variants
+#  columns:
+#    name:
+#      type:     string
+#      length:   1024
+#     
+#Model:
+#  tableName:    models
+#  columns:
+#    name:
+#      type:     string
+#      length:   1024
+#    brand:
+#      type:     string
+#      length:   1024
 
 Foto:
   actAs:
@@ -93,14 +102,16 @@ Foto:
   tableName:    fotos
   columns:
     filename:
-      type:     string
+      type:     text
       length:   1024
     car_id:
       type:     integer
+      default:  null
     is_primary:
       type:     boolean
       default:  false
   relations:
     Car:
-      type: one
-      local: car_id
+      type:       one
+      local:      car_id
+      onDelete:   SET NULL

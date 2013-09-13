@@ -16,7 +16,7 @@ abstract class BaseFotoForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'filename'   => new sfWidgetFormTextarea(),
+      'filename'   => new sfWidgetFormInputText(),
       'car_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Car'), 'add_empty' => true)),
       'is_primary' => new sfWidgetFormInputCheckbox(),
       'created_at' => new sfWidgetFormDateTime(),
@@ -25,7 +25,7 @@ abstract class BaseFotoForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'filename'   => new sfValidatorString(array('max_length' => 1024, 'required' => false)),
+      'filename'   => new sfValidatorPass(array('required' => false)),
       'car_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Car'), 'required' => false)),
       'is_primary' => new sfValidatorBoolean(array('required' => false)),
       'created_at' => new sfValidatorDateTime(),

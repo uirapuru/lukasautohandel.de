@@ -1,29 +1,29 @@
-Variant:
-  coupe:
-      name: coupe
-  fastback:
-      name: fastback
-  hatchback:
-      name: hatchback
-  cabrio:
-      name: cabrio
-  combi:
-      name: combi
-  liftback:
-      name: liftback
-  limousine:
-      name: limousine
-  microvan:
-      name: microvan
-  minivan:
-      name: minivan
-  pick-up:
-      name: pick-up
-  roadster:
-      name: roadster
-  sedan:
-      name: sedan
-  targa:
-      name: targa
-  van:
-      name: van
+#Variant:
+#  coupe:
+#      name: coupe
+#  fastback:
+#      name: fastback
+#  hatchback:
+#      name: hatchback
+#  cabrio:
+#      name: cabrio
+#  combi:
+#      name: combi
+#  liftback:
+#      name: liftback
+#  limousine:
+#      name: limousine
+#  microvan:
+#      name: microvan
+#  minivan:
+#      name: minivan
+#  pick-up:
+#      name: pick-up
+#  roadster:
+#      name: roadster
+#  sedan:
+#      name: sedan
+#  targa:
+#      name: targa
+#  van:
+#      name: van

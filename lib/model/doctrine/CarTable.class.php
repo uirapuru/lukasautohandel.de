@@ -27,12 +27,17 @@ class CarTable extends Doctrine_Table {
         return $query;
     }
 
-    public static function addModel(Doctrine_Query $query, $modelId) {
-        $query->addWhere("c.model_id = ?",$modelId);
+    public static function addBrand(Doctrine_Query $query, $brand) {
+        $query->addWhere("c.brand = ?",$brand);
         return $query;
     }
-    public static function addVariant(Doctrine_Query $query, $variantId) {
-        $query->addWhere("c.variant_id = ?",$variantId);
+
+    public static function addModel(Doctrine_Query $query, $model) {
+        $query->addWhere("c.model = ?",$model);
+        return $query;
+    }
+    public static function addVariant(Doctrine_Query $query, $variant) {
+        $query->addWhere("c.variant = ?",$variant);
         return $query;
     }
     public static function addSlider(Doctrine_Query $query) {
@@ -41,11 +46,6 @@ class CarTable extends Doctrine_Table {
     }
     public static function addPromoted(Doctrine_Query $query) {
         $query->addWhere("c.promoted = true");
-        return $query;
-    }
-    public static function addBrand(Doctrine_Query $query, $brand) {
-        $query->leftJoin("c.Model m");
-        $query->addWhere("m.brand = ?",$brand);
         return $query;
     }
     
@@ -71,6 +71,56 @@ class CarTable extends Doctrine_Table {
         self::addSortOrder($query, "created_at DESC");
         self::addPromoted($query);
         return $query;
+    }
+    
+    public function getBrandsArray()
+    {
+        $query = $this->getCarsQuery("c")
+                ->select('distinct(c.brand) as brand');
+        
+        $brands = array();
+        
+        foreach($query->execute() as $record)
+        {
+            $brands[$record->getBrand()] = $record->getBrand();
+        }
+        
+        return $brands;
+    }
+    
+    public function getModelsArray($brand = null)
+    {
+        $query = $this->getCarsQuery("c")
+                ->select('distinct(c.model) as model');
+        
+        if($brand != null)
+        {
+            $query->addWhere("c.brand = ?",$brand);
+        }
+        
+        $models = array();
+        
+        foreach($query->execute() as $record)
+        {
+            $models[$record->getModel()] = $record->getModel();
+        }
+        
+        return $models;
+    }
+    
+    public function getVariantsArray()
+    {
+        $query = $this->getCarsQuery("c")
+                ->select('distinct(c.variant) as variant');
+        
+        $variants = array();
+        
+        foreach($query->execute() as $record)
+        {
+            $variants[$record->getVariant()] = $record->getVariant();
+        }
+        
+        return $variants;
     }
 
 }
